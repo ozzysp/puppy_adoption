@@ -3,17 +3,21 @@ bg-side{
     color: white;
     height: 100vh;
 }
+
 .header{
     border-bottom: 1px solid white;
     padding: 20px;
 }
+
     .body-form{
     padding: 20px;
 }
-    .font-logo{
+
+.font-logo{
     margin-left: 10px;
     font-size: 40px;
 }
+
 .btn-custom-primary{
     background-color: #3D7B80;
     border: none;
@@ -24,11 +28,13 @@ bg-side{
     border-radius: 10px;
     margin-top: 20px;
 }
+
 .link-float{
     text-decoration: none;
     float: right;
     margin: 20px;
 }
+
 .side-logo{
     text-align: center;
     margin-top: 60px;
