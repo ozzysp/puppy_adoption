@@ -1,56 +1,88 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Sign up</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="{% static 'templates/static/users/css/crud.css' %}" rel="stylesheet">
-
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign up</title>
+</head>
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-5 bg-side">
-                <div class='header'>
-                     <img src="" width="9%"><span class="font-logo">PUPPY ADOPTION</span>
-                </div>
-                <div class="body-form">
-                <h2>Sign up</h2>
-                <p>Help us to save lifes.</p>
-    <hr>
-<form action="" method="POST">
-<span>Name:</span>
-<input type="text" class="form-control" placeholder="Place your name..." name="name">
-<br>
-<span>E-mail:</span>
-<input type="email" class="form-control" placeholder="Place your email..." name="email">
-<br>
-<div class="row">
-<div class="col-md">
-<span>Password:</span>
-<input type="password" class="form-control" placeholder="Place your password" name="password">
-</div>
-<div class="col-md">
-<span>Retype password:</span>
-<input type="password" class="form-control" placeholder="Place your password" name="retype_pass">
-</div>
-</div>
-<input type="submit" value="SUBMIT" class="btn-custom-primary">
-<a href="" class="link-float">I've already an account</a>
-</form>
-</div>
-</div>
-<div class="col-md-7">
-<div class="side-logo">
-<img class="logo-margin-top" src="" width="20%">
-<h1>PUPPY ADOPTION</h1>
-<p>Help us to save lifes.</p>
-</div>
-</div>
-</div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
+</html>
+<html lang="en-US">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign up</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'users/css/crud.css' %}" rel="stylesheet">
+    </head>
+    <body>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-5 bg-side">
+                    <div class='header'>
+                        <img src="{% static 'users/img/logo_adote.png' %}" width="9%"><span class="font-logo">Puppy Adoption</span>
+                    </div>
+
+                    <div class="body-form">
+                        {% if messages %}
+                            <br>
+                            {% for message in messages %}
+                                <div class="alert {{message.tags}}">
+                                    {{message}}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <h2>Sign up</h2>
+                        <p>Save one little life.</p>
+                        <hr>
+                        <form action="{% url 'crud' %}" method="POST">{% csrf_token %}
+                            <span>Name:</span>
+                            <input type="text" class="form-control" placeholder="Type your name..." name="name">
+                            <br>
+                            <span>E-mail:</span>
+                            <input type="email" class="form-control" placeholder="Type your email..." name="email">
+                            <br>
+                            <div class="row">
+
+                                <div class="col-md">
+                                    <span>Password:</span>
+                                    <input type="password" class="form-control" placeholder="Type your password..." name="password">
+                                </div>
+
+                                <div class="col-md">
+                                    <span>Retype your password:</span>
+                                    <input type="password" class="form-control" placeholder="Retype password..." name="retype password">
+                                </div>
+                            </div>
+
+                            <input type="submit" value="SAVE" class="btn-custom-primary">
+
+                            <a href="" class="link-float">Already have an account</a>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-md-7">
+                    <div class="side-logo">
+                        <img class="logo-margin-top" src="{% static 'users/img/logo_adote.png' %}" width="20%">
+                        <h1>Puppy Adoption</h1>
+                        <p>Help us to save little lifes.</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
 </html>
