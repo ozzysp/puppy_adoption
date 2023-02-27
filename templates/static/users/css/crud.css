@@ -1,4 +1,4 @@
-bg-side{
+.bg-side{
     background-color: #391D34;
     color: white;
     height: 100vh;
@@ -9,7 +9,7 @@ bg-side{
     padding: 20px;
 }
 
-    .body-form{
+.body-form{
     padding: 20px;
 }
 
