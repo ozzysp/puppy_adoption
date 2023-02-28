@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib.auth.models import User
 
 
 def crud(request):
@@ -15,10 +16,18 @@ def crud(request):
 
         if password != retype:
             return  render(request, 'crud.html')
+       
 
+        try:  
+            user = User.objects.create_user(
+                username=name,
+                email=email,
+                password=password
+            )
+            return render(request, 'crud.html')
+        except:
+            return render(request, 'crud.html')
 
-
-        return HttpResponse(f'{name}, {email}, {password}, {retype}')
 
 
 def login(request):
