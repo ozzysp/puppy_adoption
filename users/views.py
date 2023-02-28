@@ -10,8 +10,15 @@ def crud(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         retype = request.POST.get('retype')
-        return HttpResponse('TESTE TESTE')
+        if len(name.strip()) == 0 or len(email.strip()) == 0 or len(password.strip()) == 0 or len(retype.strip()) == 0:
+            return render(request, 'crud.html')
 
+        if password != retype:
+            return  render(request, 'crud.html')
+
+
+
+        return HttpResponse(f'{name}, {email}, {password}, {retype}')
 
 
 def login(request):
