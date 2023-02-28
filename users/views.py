@@ -37,5 +37,8 @@ def crud(request):
 
 
 def login(request):
-    return render(request, 'login.html')
+    if request.method == 'GET':
+        return render(request, 'login.html')
+        
+        
 
