@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.messages import constants
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login as dj_login, logout
 from django.shortcuts import redirect
 
 
@@ -50,11 +50,12 @@ def login(request):
         user = authenticate(username=name,
                             password=password)
         if user is not None:
-            login(request, user)
+            dj_login(request, user)
             return redirect('/publish/new_puppy')
         else:
             messages.add_message(request, constants.ERROR, 'Unregistered user')
             return render(request, 'login.html')
+
     
 def logout(request):
     logout(request)
