@@ -3,9 +3,12 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.messages import constants
-
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import redirect
 
 def crud(request):
+    if request.user.is_authenticated:
+        return redirect('publish/new_puppy')
     if request.method == 'GET':
         return render(request, 'crud.html')
     else:
@@ -37,8 +40,21 @@ def crud(request):
 
 
 def login(request):
+    if request.user.is_authenticated:
+        return redirect('publish/new_puppy')
     if request.method == 'GET':
         return render(request, 'login.html')
-        
-        
+    elif request.method == 'POST':
+        name = request.POST.get('name')
+        password = request.POST.get('password')           
+        user = authenticate(username=name,
+                            password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('/publish/new_puppy')
+        else:
+            messages.add_message(request, constants.ERROR, 'Unregistered user')
+            return render(request, 'login.html')
+    
+
 
