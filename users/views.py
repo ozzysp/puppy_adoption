@@ -6,6 +6,7 @@ from django.contrib.messages import constants
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 
+
 def crud(request):
     if request.user.is_authenticated:
         return redirect('publish/new_puppy')
@@ -24,7 +25,6 @@ def crud(request):
             messages.add_message(request, constants.WARNING, 'Passwords did not match')
             return  render(request, 'crud.html')
        
-
         try:  
             user = User.objects.create_user(
                 username=name,
