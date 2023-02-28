@@ -56,5 +56,6 @@ def login(request):
             messages.add_message(request, constants.ERROR, 'Unregistered user')
             return render(request, 'login.html')
     
-
-
+def logout(request):
+    logout(request)
+    return redirect('/auth/login')
