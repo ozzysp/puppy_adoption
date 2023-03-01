@@ -14,7 +14,7 @@ class Tag(models.Model):
         return self.tag
     
 
-class Pet(models.Model):
+class Puppy(models.Model):
     choices_status = (('F', 'For adoption'),
                       ('A', 'Already adopted'))
     
