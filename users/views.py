@@ -9,8 +9,8 @@ from django.shortcuts import redirect
 
 def crud(request):
     if request.user.is_authenticated:
-        return redirect('/auth/publish')
-    if request.method == 'GET':
+        return redirect('/publish')
+    elif request.method == 'GET':
         return render(request, 'crud.html')
     else:
         name = request.POST.get('name')
@@ -41,10 +41,11 @@ def crud(request):
 
 def login(request):
     if request.user.is_authenticated:
-        return redirect('/auth/publish')
-    if request.method == 'GET':
+        return redirect('/publish')
+    elif request.method == 'GET':
         return render(request, 'login.html')
-    elif request.method == 'POST':
+    else: 
+        request.method == 'POST'
         name = request.POST.get('name')
         password = request.POST.get('password')           
         user = authenticate(username=name,
