@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import Tag, Race, Puppy
-
+from django.contrib.messages import constants
+from django.http import HttpResponse
 
 @login_required
 def new_puppy(request):
@@ -18,6 +19,9 @@ def new_puppy(request):
         phone = request.POST.get('phone')
         tags = request.POST.getlist('tags')
         race = request.POST.get('race')
+
+        print(tags)
+        #return HttpResponse('Deu certo!!!')
         
 
     puppy = Puppy(
@@ -39,7 +43,7 @@ def new_puppy(request):
         puppy.save()
         tags = Tag.objects.all()
         races = Race.objects.all()
-        messages.add_message(request, constants.SUCCESS, 'New puppy registered')
+        #messages.add_message(request, constants.SUCCESS, 'New puppy registered')
         return render(request, 'new_puppy.html', {'tags': tags, 'races': races})
     
     
