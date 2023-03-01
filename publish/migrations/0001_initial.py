@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Pet',
+            name='Puppy',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('picture', models.ImageField(upload_to='Puppies_Pictures')),
