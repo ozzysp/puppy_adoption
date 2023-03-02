@@ -21,7 +21,7 @@ def new_puppy(request):
         race = request.POST.get('race')
 
         print(tags)
-        #return HttpResponse('Deu certo!!!')
+        return HttpResponse('Deu certo!!!')
         
 
     puppy = Puppy(
@@ -46,4 +46,7 @@ def new_puppy(request):
         #messages.add_message(request, constants.SUCCESS, 'New puppy registered')
         return render(request, 'new_puppy.html', {'tags': tags, 'races': races})
     
-    
+@login_required
+def your_puppies(request):
+    if request.method == "GET":
+        return render(request, 'your_puppies.html')
