@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from .models import Tag, Race, Puppy
+from .models import Tag, Race, Puppy, User
 from django.contrib.messages import constants
 from django.http import HttpResponse
 
@@ -49,4 +49,6 @@ def new_puppy(request):
 @login_required
 def your_puppies(request):
     if request.method == "GET":
-        return render(request, 'your_puppies.html')
+        puppies = Puppy.objects.filter(user=request.user)
+        user = User.objects.filter(user=request.user)
+        return render(request, 'your_puppies.html', {'puppies': puppies, 'user': user})
