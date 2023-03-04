@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from .models import Tag, Race, Puppy
+from .models import Tag, Race, Puppy, User
 from django.contrib import messages
 from django.contrib.messages import constants
 from django.shortcuts import redirect
+#from django.http import HttpResponse
 
 
 @login_required
