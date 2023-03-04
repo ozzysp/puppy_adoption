@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from .models import Tag, Race, Puppy, User
+from .models import Tag, Race, Puppy
+from django.contrib import messages
 from django.contrib.messages import constants
-from django.http import HttpResponse
+from django.shortcuts import redirect
+
 
 @login_required
 def new_puppy(request):
@@ -19,9 +21,7 @@ def new_puppy(request):
         phone = request.POST.get('phone')
         tags = request.POST.getlist('tags')
         race = request.POST.get('race')
-
-        print(tags)
-        return HttpResponse('Deu certo!!!')
+        return redirect('/publish/your_puppies')
         
 
     puppy = Puppy(
@@ -43,12 +43,23 @@ def new_puppy(request):
         puppy.save()
         tags = Tag.objects.all()
         races = Race.objects.all()
-        #messages.add_message(request, constants.SUCCESS, 'New puppy registered')
+        messages.add_message(request, constants.SUCCESS, 'New puppy registered')
         return render(request, 'new_puppy.html', {'tags': tags, 'races': races})
     
 @login_required
 def your_puppies(request):
     if request.method == "GET":
         puppies = Puppy.objects.filter(user=request.user)
-        user = User.objects.filter(user=request.user)
-        return render(request, 'your_puppies.html', {'puppies': puppies, 'user': user})
+        return render(request, 'your_puppies.html', {'puppies': puppies})
+
+
+def delete_puppy(request, id):
+    puppy = Puppy.objects.get(id=id)
+    
+    if not puppy.user == request.user:
+        messages.add_message(request, constants.ERROR, 'Not authorized action')
+        return redirect('/publish/your_puppies')
+    else:
+        puppy.delete()
+        messages.add_message(request, constants.ERROR, 'The puppy has been deleted')
+        return redirect('/publish/your_puppies')
