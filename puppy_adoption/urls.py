@@ -7,7 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('users.urls')),
     path('publish/', include('publish.urls')),
-    path('your_puppies/', include('your_puppies.urls'))
+    #path('your_puppies/', include('your_puppies.urls'))
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
